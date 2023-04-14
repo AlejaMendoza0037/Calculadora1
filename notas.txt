@@ -1,0 +1,194 @@
+//TO DO:BOTON PARA BORRAR PANTALLA
+//hacer un try catch para manejar la exepcion de expresion no valida
+
+//window.onload: cuando la pantalla se cargue ejecute tal cosa
+
+var botones=["7","8","9", "+","4","5","6", "-", "1","2","3", "*", "0",".","=", "/"];
+
+   
+
+function renderizarGUI(){//contruir en una pantalla
+
+    const cuerpo=document.createElement("body");//crear elemento (el elemento que quiero crear)
+    //cuerpo.style.backgroundColor="red";    
+    
+    
+    document.body.appendChild(cuerpo)
+    
+   
+
+
+
+
+    
+    const cabeza=document.createElement("header");//crear elemento (el elemento que quiero crear)
+
+    //2. agregar atributos (optional)
+    //cabeza.setAttribute("style", ";");
+
+      cabeza.style.backgroundColor="#8FBC8F";
+      cabeza.style.textAling="center";
+      
+    
+    
+    
+    //3. insertar el elemento en el DOM
+    //lo insertamos en el body en cualquier elemnto del DOM
+    document.body.appendChild(cabeza)
+
+
+
+
+
+    
+    const h2=document.createElement("h2");
+    const textTitulo1=document.createTextNode("Calculadora");
+    h2.style.textAlign = "center";
+    cabeza.appendChild(h2);
+
+    h2.appendChild(textTitulo1);   
+
+    /*const navegacion=document.createElement("nav");
+    navegacion.setAttribute("id","navegacion");
+    document.body.appendChild(navegacion);
+
+    const texto=document.createElement("h2");
+    
+    navegacion.setAttribute("id","titulo");
+    navegacion.appendChild(texto);*/       
+
+       
+       
+
+
+
+
+
+    //Div Calculadora
+    //1.crear elemeto    
+    const divCalculadora=document.createElement("div");//crear elemento (el elemento que quiero crear)
+
+    //2. agregar atributos (optional)
+    divCalculadora.setAttribute("id", "calculadora");//agreguele un atributo   
+    divCalculadora.setAttribute("class", "text-center");
+    divCalculadora.setAttribute("style", "width:50%; margin:0 auto;");
+    divCalculadora.style.background="#DCDCDC"
+    
+    
+    
+    //3. insertar el elemento en el DOM
+    //lo insertamos en el body en cualquier elemnto del DOM
+    document.body.appendChild(divCalculadora);//agregue un hijo al body, agregelo al body
+    //aca inserto, en este caso en el body
+
+    
+
+
+    //div pantalla                          //etiqueta--
+    const divPantalla=document.createElement("div")
+    divPantalla.setAttribute("id", "divPantalla");
+    divCalculadora.appendChild(divPantalla);
+    
+    
+    //pantalla: input
+    const inputPantalla=document.createElement("input");
+    inputPantalla.setAttribute("id", "pantalla");
+    inputPantalla.setAttribute("type", "text");
+    inputPantalla.setAttribute("value", "0");
+    inputPantalla.setAttribute('disable', 'true');
+    inputPantalla.setAttribute("class", "form-control text-rigth");
+
+    divPantalla.appendChild(inputPantalla);
+    //agregue a la division de la pantalla un input
+
+
+
+    //div Botones
+    const divBotones=document.createElement("div");
+    divBotones.setAttribute("id", "botones");
+    
+    divCalculadora.appendChild(divBotones);
+
+    for(let i=0; i<botones.length;i++){
+            //creamos filas
+            if(i%4==0){
+                const divFila=document.createElement("div");
+                divFila.setAttribute("class", "row");
+                divBotones.appendChild(divFila);//agregamos la fila a la division de botones
+
+
+            }
+
+        //creo un boton
+        let boton=document.createElement("button");
+        boton.setAttribute("id", "boton"+botones[i]);//llamele boton 1...[i]
+        boton.setAttribute("class", "btn btn-outline-primary col-3 border-white")
+        
+        boton.innerHTML=botones[i]
+        divBotones.appendChild(boton);
+
+        //lastChild agreguemelo de ultimo, al final de la division, para que no los cree en desorden
+
+        //agregar un escuchador de eventos a cada boton
+
+            //funcion anonima llama a otra funcion
+            //cuando hagan click en el boton, llamo  a procesarEvento boton le pasamos en boton en el cual hicimos click 
+
+        boton.addEventListener("click", function(){
+            procesarEvento(boton);
+        });
+
+        
+
+
+
+    }
+
+
+
+    
+
+}
+
+function procesarEvento(boton){
+    let miPantalla=document.getElementById("pantalla");
+
+    if(miPantalla.value=="0"){
+        miPantalla.value="";
+    }
+if(boton.innerHTML != "="){
+    miPantalla.value+=boton.innerHTML;
+
+}else{
+    //procesar la expresion7+6=
+    //evaluar la expresion con math.js y mostrar el valor alli en la pantalla
+    let resultado=math.evaluate(miPantalla.value);//que es lo que voy a evaluar
+    miPantalla.value=resultado;
+
+
+
+}
+
+   
+    
+    //console.log(boton.innerHTML)
+
+}
+
+renderizarGUI();
+
+//todo esto es por que apartir de un json podemos crear interfases
+//cuando algo se repite, crear cclo, como un cie y pegue
+
+
+//try{}:: trate de hacer eso y cuando haya un error capturelo y proceda a manejarlo 
+//catch (error)
+//alert(no sirve)
+
+forEach =variable para leer todos los botones
+
+if(boton.innerHTML=="C"){
+    miPantalla.value.slice(0,-1);
+    
+    return
+}
